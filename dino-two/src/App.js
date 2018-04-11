@@ -3,7 +3,7 @@ import './App.css';
 
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Profiles from '.components/Profiles'
+import Profiles from './components/Profiles'
 
 class App extends Component {
   constructor(props) {
@@ -11,11 +11,22 @@ class App extends Component {
     this.state = { data: [] }
   }
 
+  componentDidMount() {
+    fetch('./dinosaurs.json')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({
+          data: data
+        })
+      })
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-
+        <Profiles dinos= {this.state.data} />
         <Footer />
       </div>
     );
