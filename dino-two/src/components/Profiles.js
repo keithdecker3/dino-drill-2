@@ -7,19 +7,19 @@ class Profiles extends React.Component {
 
   showSkills = (event) => {
     let profile = event.target.parentNode.parentNode
-    let skillsList = profile.childNodes[1]
-    // console.log(skillsList.className)
-    {skillsList.className === 'skills-container hidden' ? skillsList.className = 'skills-container' : skillsList.className = 'skills-container hidden'}
-    
+    if (profile.className === 'profile-card') {
+      let skillsList = profile.childNodes[1]
+      {skillsList.className === 'skills-container hidden' ? skillsList.className = 'skills-container' : skillsList.className = 'skills-container hidden'}
+    }
   }
 
 
   render() {
     const dinos = this.props.dinos.map(dino => {
       return (
-        <li key={dino.name} onClick={this.showSkills}>
+        <li key={dino.name}>
           <div className='profile-card'>
-            <header className='profile-header'>
+            <header className='profile-header' onClick={this.showSkills}>
               <img src={dino.image} alt='profile' />
               <h2>{dino.name}</h2>
             </header>
@@ -33,8 +33,7 @@ class Profiles extends React.Component {
       <main>
         <section id='profiles-container'>
           <h2>Profiles</h2>
-          <ul id='profiles'></ul>
-            {dinos}
+          <ul id='profiles'>{dinos}</ul>
         </section>
       </main>
     )
