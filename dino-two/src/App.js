@@ -15,7 +15,6 @@ class App extends Component {
     fetch('./dinosaurs.json')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({
           data: data
         })
